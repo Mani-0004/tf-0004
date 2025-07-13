@@ -43,7 +43,9 @@ resource "aws_subnet" "crm-db-si" {
   }
 }
 
-# internet gatewayresource "crm-igw" {
+# internet gateway
+
+resource  "aws_internet_gateway" "crm-igw" {
   vpc_id = aws_vpc.crm-vpc.id
 
   tags = {
