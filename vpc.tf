@@ -75,6 +75,8 @@ resource "aws_route_table" "crm-pvt-rt" {
   tags = {
     Name = "crm-private route"
   }
+  
+  }
 
   
   # crm public association
