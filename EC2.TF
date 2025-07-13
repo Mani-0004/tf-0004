@@ -1,7 +1,7 @@
 # EC2 web server 
 
 resource "aws_instance" "crm-web-server" {
-  ami           = ami-05f991c49d264708f
+  ami           = ami-0ec1bf4a8f92e7bd1
   instance_type = "t2.micro"
   subnet_id   = aws_subnet.crm-web-sn.id
   key_name = "ravi.pem"
