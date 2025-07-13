@@ -246,3 +246,79 @@ resource "aws_vpc_security_group_egress_rule" "crm-web-sg-egress" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
+
+# crm api security group
+resource "aws_security_group" "crm-api-sg" {
+  name        ="crm-api-sg"
+  description = "Allow SSH & nodejs traffic"
+  vpc_id      = aws_vpc.crm-vpc.id
+
+  tags = {
+    Name = "crm-api-sg"
+  }
+}
+ # crm api security group -ingress
+
+resource "aws_vpc_security_group_ingress_rule" "crm-api-sg-ingress-ssh" {
+  security_group_id = aws_security_group.crm-api-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "crm-api-sg-ingress-nodejs" {
+  security_group_id = aws_security_group.crm-api-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 8080
+  ip_protocol       = "tcp"
+  to_port           = 8080
+}
+
+# crm api security group -egress
+
+resource "aws_vpc_security_group_egress_rule" "crm-api-sg-egress" {
+  security_group_id = aws_security_group.crm-api-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
+
+# crm db security group
+resource "aws_security_group" "crm-db-sg" {
+  name        ="crm-db-sg"
+  description = "Allow SSH & postgress traffic"
+  vpc_id      = aws_vpc.crm-vpc.id
+
+  tags = {
+    Name = "crm-db-sg"
+  }
+}
+ # crm db security group -ingress
+
+resource "aws_vpc_security_group_ingress_rule" "crm-db-sg-ingress-ssh" {
+  security_group_id = aws_security_group.crm-db-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "crm-db-sg-ingress-postgress" {
+  security_group_id = aws_security_group.crm-db-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 5432
+  ip_protocol       = "tcp"
+  to_port           = 5432
+}
+
+# crm db security group -egress
+
+resource "aws_vpc_security_group_egress_rule" "crm-db-sg-egress" {
+  security_group_id = aws_security_group.crm-db-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
+
+
+
+
