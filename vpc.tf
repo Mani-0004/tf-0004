@@ -78,9 +78,8 @@ resource "aws_route_table" "crm-pvt-rt" {
 
   
   # crm public association
-  
-resource "aws_route_table_association" "crm-web-asc"
- {
+
+resource "aws_route_table_association" "crm-web-asc"{
   subnet_id      = aws_subnet.crm-web-sn.id
   route_table_id = aws_route_table.crm-pub-rt.id
 }
@@ -89,17 +88,15 @@ resource "aws_route_table_association" "crm-web-asc"
 
 
 
-resource "aws_route_table_association" "crm-api-asc"
- {
-  subnet_id      = aws_subnet.crm-api-sn.id
+resource "aws_route_table_association" "crm-api-asc"{
+ subnet_id      = aws_subnet.crm-api-sn.id
   route_table_id = aws_route_table.crm-pub-rt.id
 }
 # crm private association
 
 
 
-resource "aws_route_table_association" "crm-db-asc"
- {
+resource "aws_route_table_association" "crm-db-asc"{
   subnet_id      = aws_subnet.crm-db-sn.id
   route_table_id = aws_route_table.crm-pvt-rt.id
 }
