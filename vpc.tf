@@ -52,3 +52,27 @@ resource  "aws_internet_gateway" "crm-igw" {
     Name = "crm-internet-gateway"
   }
 }
+
+# crm public route table 
+resource "aws_route_table" "crm-pub-rt" {
+  vpc_id = aws_vpc.crm-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.crm-igw.id
+  }
+  tags = {
+    Name = "crm-public-route"
+  }
+}
+
+
+# crm private route table
+
+resource "aws_route_table" "crm-pvt-rt" {
+  vpc_id = aws_vpc.crm-vpc.id
+
+  tags = {
+    Name = "crm-private route"
+  }
+}
