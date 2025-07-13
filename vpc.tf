@@ -187,3 +187,27 @@ resource "aws_network_acl" "crm-db-nacl" {
     Name = "crm-db-nacl"
   }
 }
+
+# crm web nacl association
+
+resource "aws_network_acl_association" "crm-web-nacl-asc" {
+  network_acl_id = aws_network_acl.crm-web-nacl.id
+  subnet_id      = aws_subnet.crm-web-sn.id
+}
+
+# crm api nacl association
+
+resource "aws_network_acl_association" "crm-api-nacl-asc" {
+  network_acl_id = aws_network_acl.crm-api-nacl.id
+  subnet_id      = aws_subnet.crm-api-sn.id
+}
+
+# crm db nacl association
+
+resource "aws_network_acl_association" "crm-db-nacl-asc" {
+  network_acl_id = aws_network_acl.crm-db-nacl.id
+  subnet_id      = aws_subnet.crm-db-si.id
+}
+
+
+
